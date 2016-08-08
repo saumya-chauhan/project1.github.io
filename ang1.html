@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Hello!</title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <style>
+      .price-form{
+          margin-bottom: 10px;
+          padding: 15px;
+          background-color: #5cb85c;
+      }
+
+  </style>
+</head>
+<body ng-app="ngCribs" ng-controller="cribsController ">
+
+    <div class="container">
+        <div class="col-sm-12 price-form">
+
+               <div class="col-sm-6">
+               <div class="input-group">
+                   <span class="input-group-addon">Min Price</span>
+                   <select name="minprice" id="minprice" ng-model="priceInfo.min" class="form-control">
+                       <option value="100000">$100,000</option>
+                       <option value="200000">$200,000</option>
+                       <option value="300000">$300,000</option>
+                       <option value="400000">$400,000</option>
+                       <option value="500000">$500,000</option>
+                       <option value="600000">$600,000</option>
+                       <option value="700000">$700,000</option>
+                   </select>
+               </div>
+              </div>
+               <div class="col-sm-6">
+               <div class="input-group">
+                   <span class="input-group-addon">Max Price</span>
+                   <select name="maxprice" id="maxprice" ng-model="priceInfo.max" class="form-control">
+                       <option value="100000">$100,000</option>
+                       <option value="200000">$200,000</option>
+                       <option value="300000">$300,000</option>
+                       <option value="400000">$400,000</option>
+                       <option value="500000">$500,000</option>
+                       <option value="600000">$600,000</option>
+                       <option value="700000">$700,000</option>
+                   </select>
+               </div>
+           </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class = "col-sm-4" ng-repeat="crib in cribs | cribsFilter : priceInfo">
+            <div class="thumbnail">
+              <img ng-src="{{crib.image}}.jpg" alt="">
+                <div class="caption">
+                <div ng-hide="showDetails === true">
+                    <h3><i class="glyphicon glyphicon-tag"></i>{{" "+crib.price | currency}}</h3>
+                    <h4> <i class="glyphicon glyphicon-home"></i>{{" "+ crib.address+" "}}
+                    <span class="label label-primary label-sm">{{crib.type}}</span>   </br>   </h4>
+                    <h4>          </h4>
+                </div>
+                <button class="btn btn-xs btn-success"
+                    ng-hide="showDetails===true"
+                    ng-click="showDetails= !showDetails" >Details</button>
+
+
+                <button class="btn btn-xs btn-danger"
+                    ng-show="showDetails===true"
+                    ng-click="showDetails= !showDetails" >Close</button>
+
+
+                <div class="details" ng-show="showDetails === true">
+                    </h4> <span class="label label-primary">{{crib.details.bedrooms}}</span>
+                    <span class="label label-primary">{{crib.details.bathrooms}}</span>
+                    <span class="label label-primary">{{crib.details.area}}</span></h4>
+                <p>{{crib.description}}</p>
+                </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+               <script src="ui-bootstrap-2.0.1.min.js"></script>
+               <script src="ui-bootstrap-tpls-2.0.1.min.js"></script>
+               <script src="sam.js"></script>
+               <script src="angular.min.js"></script>
+               <script src="app.js"></script>
+               <script src="cribsController.js"></script>
+              <script src="cribsFactory.js"></script>
+              <script src="cribsFilter.js"></script>
+              <script src="js/jquery.min.js"></script>
+              <script src="cribsController2.js"></script>
+
+    </body>
+</html>
